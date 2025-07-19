@@ -1,104 +1,81 @@
-## HealthKart Food Label Cataloging Application
+# **MediMatch: AI-Powered Alternative Medicine Finder**
 
-### Overview
+MediMatch is a command-line tool designed to suggest alternative medicines for patients when a specific medicine is unavailable. Leveraging machine learning techniques like clustering and K-Nearest Neighbors (KNN), MediMatch provides effective recommendations tailored to patient needs.
 
-This application is designed to process images of food labels, extract nutritional information, and determine whether the food is healthy or unhealthy. It leverages Google Cloud Vision for OCR (Optical Character Recognition) and a generative AI model to analyze the text. The processed data is then stored in a MongoDB database.
+## **Features**
 
-### Features
+- **Smart Clustering**: Groups medicines based on chemical composition, usage, and reviews
+- **Alternative Finder**: Suggests similar medicines when a preferred one is not available
+- **Review-Based Suggestions**: Considers excellent, average, and poor reviews to enhance recommendation quality
+- **Extensible Dataset**: Easily add new data to expand the system's functionality
 
-- Upload an image or provide a URL to an image for processing.
-- Perform OCR to detect and clean text from the image.
-- Extract nutritional information from the detected text.
-- Adjust nutrient values based on the serving size.
-- Determine if the food is healthy or unhealthy using a generative AI model.
-- Store the processed data in a MongoDB database.
+## **Technologies Used**
+
+- **Programming Language**: Python
+- **Libraries**:
+  - Scikit-learn
+  - Pandas
+  - NumPy
+
+## **Dataset Structure**
+
+The dataset (`medicines.csv`) should have the following structure:
+
+| Medicine Name | Main Element | Numeric Value | Uses | Side Effects | Image URL | Manufacturer | Excellent Review % | Average Review % | Poor Review % |
+|--------------|--------------|---------------|------|--------------|-----------|--------------|-------------------|-----------------|---------------|
+| Avastin 400mg Injection | Bevacizumab | 400mg | Cancer of colon and rectum... | Rectal bleeding, ... | https://onemg.gumlet.io/l_watermark_346,w... | Roche Products India Pvt Ltd | 22 | 56 | 22 |
+| Augmentin 625 Duo Tablet | Amoxycillin | 500mg | Treatment of Bacterial... | Vomiting, Nausea,... | https://onemg.gumlet.io/l_watermark_346,w... | Glaxo SmithKline Pharmaceuticals | 47 | 35 | 18 |
+
+## **Installation and Setup**
 
 ### Prerequisites
+- Python (version 3.8 or later)
+- Pip (Python package manager)
 
-- Python 3.10 or higher
-- Google Cloud Vision API credentials
-- Google Generative AI API key
-- MongoDB for data storage
+### Steps to Set Up
 
-### Installation
-
-1. Clone the repository:
-
-    ```cmd
-    git https://github.com/Adi123XD/Food-Cateloging-.git
-    cd Food-Cateloging-
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/Pranjal-88/MediMatch.git
+   cd MediMatch
    ```
 
-2. Install the required packages:
+2. **Install Required Dependencies**
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-    ```cmd
-    pip install -r requirements.txt
-    ```
+3. **Prepare Dataset**
+   - Ensure your `medicines.csv` file is placed in the project root directory
+   - Verify the CSV file follows the structure shown above
 
-3. Set up the environment variables:
-   - Create a .env file in the root directory of the project.
-   - Add the following variables:
+## **How to Run**
 
-    ```python
-    GOOGLE_API_KEY=<your-google-api-key>
-    GOOGLE_APPLICATION_CREDENTIALS=<path-to-your-google-cloud-credentials-json>
-    MODEL_PATH=<path-to-your-model-file>
-    MONGO_URI=<your-mongo-uri>
-    ```
+1. **Open the runner.py file**
 
-### File Structure
+2. **Modify the Query Medicine**
+   - Locate the `query_medicine` variable in `runner.py`
+   - Replace its value with the medicine name you want alternatives for
+   ```python
+   query_medicine = "Your Medicine Name Here"
+   ```
 
-- main.py: Contains the main functions for OCR, text cleaning, nutrient extraction, and formatting data.
-- webapp.py: Streamlit application interface for user interactions.
-- mongo.py: Contains functions to interact with the MongoDB database.
-- constants.py: Contains constant values and patterns used in the application.
-- requirements.txt: Lists all the dependencies required for the project.
-- .env: Environment variables (not included in the repository; must be created manually).
+3. **Run the Program**
+   ```bash
+   python runner.py
+   ```
 
-### Usage
+4. **View Results**
+   - The program will display the closest alternative medicine on the terminal.
 
-1. Run the Streamlit application:
 
-    ```python
-    streamlit run webapp.py
-    ```
+## **Example Usage**
 
-2. Upload an image or enter an image URL for processing.
-3. Enter the image URL to store in the database.
-4. Click the "Enter" button to start processing.
-5. The application will display the detected text, extracted nutrients, and whether the food is healthy or unhealthy.
-6. If the data is valid, it will be inserted into the MongoDB database.
+```python
+# In runner.py
+query_medicine = "Zincold Tablet"
 
-### Functions
-
-#### main.py
-
-- format_data(input_dict): Formats the extracted nutrient data.
-- convert_to_float(value): Converts a string to a float.
-- healthy_unhealthy(ocr_text): Determines if the food is healthy or unhealthy using the AI model.
-- adjust_nutrient_values(output, serving_size): Adjusts nutrient values based on the serving size.
-- clean_ocr_text(text): Cleans the OCR-detected text.
-- extract_nutrients(text): Extracts nutrient information from the cleaned text.
-- detect_text(img_path): Performs OCR on the given image.
-
-#### webapp.py
-
-- Streamlit application interface for user interactions.
-
-#### mongo.py
-
-- insert_to_db(data, db_name, collection_name): Inserts data into the specified MongoDB collection.
-
-#### constants.py
-
-- Contains constant values and regular expressions used for nutrient extraction.
-
-### Troubleshooting
-
-- Ensure all required environment variables are set correctly in the .env file.
-- Make sure your Google Cloud Vision API credentials are valid and correctly referenced in the environment variables.
-- Verify that the MongoDB URI is correct and the database is accessible.
-
-### Contributions
-
+# Output will be shown like:
+```
+![image](https://github.com/user-attachments/assets/14e773a3-96f0-4048-9139-d075db3f2c13)
 
