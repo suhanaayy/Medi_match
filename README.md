@@ -36,7 +36,7 @@ The dataset (`medicines.csv`) should have the following structure:
 
 1. **Clone the Repository**
    ```bash
-   git clone https://github.com/Pranjal-88/MediMatch.git
+   git clone https://github.com/suhanaayy/MediMatch.git
    cd MediMatch
    ```
 
