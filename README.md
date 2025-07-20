@@ -1,6 +1,6 @@
 # **MediMatch: AI-Powered Alternative Medicine Finder**
 
-MediMatch is a command-line tool designed to suggest alternative medicines for patients when a specific medicine is unavailable. Leveraging machine learning techniques like clustering and K-Nearest Neighbors (KNN), MediMatch provides effective recommendations tailored to patient needs.
+MediMatch is a command-line tool designed to suggest alternative medicines for patients when a specific medicine is unavailable. Leveraging machine learning techniques like hierarchical clustering using wards method, MediMatch provides effective recommendations tailored to patient needs.
 
 ## **Features**
 
